@@ -1,0 +1,36 @@
+.app-top-nav {
+    &__search {
+        width: 300px;
+    }
+}
+
+a.menu-item {
+    text-align: center;
+    color: var(--color-grey-100);
+    text-decoration: none;
+    display: flex;
+
+    &__content {
+        padding: 13px 18px;
+    }
+
+    &:hover {
+        color: white;
+    }
+}
+
+.menu-item {
+    cursor: pointer;
+    text-align: center;
+    padding: 13px 18px;
+    color: var(--color-grey-100);
+    text-decoration: none;
+
+    &:hover {
+        color: white;
+    }
+
+    &:active {
+        text-decoration: none;
+    }
+}
