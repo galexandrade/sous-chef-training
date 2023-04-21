@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import Router from './Router';
 import reportWebVitals from './reportWebVitals';
+import './Server/server';
 
 import './index.css';
 import '@7shifts/sous-chef/dist/index.css';
