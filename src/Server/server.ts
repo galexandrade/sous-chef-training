@@ -16,20 +16,30 @@ new Server({
             (schema, request) => {
                 const { cursor } = request.queryParams;
 
-                let page = getCurrentPageFromCursor(cursor);
-                const nextPage = page + 1;
+                try {
+                    let page = getCurrentPageFromCursor(cursor);
+                    const nextPage = page + 1;
 
-                const dataPaginated = getPaginatedData(page, employees);
-                const hasNextPage =
-                    getPaginatedData(page + 1, employees).length > 0;
+                    const dataPaginated = getPaginatedData(page, employees);
+                    const hasNextPage =
+                        getPaginatedData(page + 1, employees).length > 0;
 
-                return {
-                    data: dataPaginated,
-                    cursor: {
-                        next: hasNextPage && generateCursor(nextPage),
-                        prev: page > 0 && generateCursor(page - 1)
-                    }
-                };
+                    return {
+                        data: dataPaginated,
+                        cursor: {
+                            next: hasNextPage && generateCursor(nextPage),
+                            prev: page > 0 && generateCursor(page - 1)
+                        }
+                    };
+                } catch (error) {
+                    return {
+                        data: [],
+                        cursor: {
+                            next: undefined,
+                            prev: undefined
+                        }
+                    };
+                }
             },
             {
                 timing: TIMING

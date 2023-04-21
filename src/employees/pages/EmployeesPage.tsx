@@ -1,6 +1,5 @@
-import { DataTable, Page, Text } from '@7shifts/sous-chef';
+import { DataTable, Page } from '@7shifts/sous-chef';
 import { useEmployees } from '../hooks/useEmployees';
-import { useNavigate } from 'react-router';
 import { useSearchParams } from 'react-router-dom';
 
 const EmployeesPage = () => {

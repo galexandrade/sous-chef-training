@@ -8,7 +8,7 @@ export const getCurrentPageFromCursor = (cursor?: string): number => {
     }
     const page = Number(b64_to_utf8(cursor).replace(CURSOR_HASH, ''));
     if (!Number.isInteger(page)) {
-        return DEFAULT_PAGE;
+        throw Error('Invalid cursor');
     }
     return page;
 };
