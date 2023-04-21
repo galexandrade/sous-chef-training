@@ -7,7 +7,16 @@ const EmployeesPage = () => {
 
     return (
         <Page title="View Employees">
-            <DataTable items={data} isLoading={isLoading} />
+            <DataTable
+                items={data}
+                isLoading={isLoading}
+                hasNext={!!cursor.next}
+                hasPrevious={!!cursor.prev}
+                onNextClick={() => console.log('load next page', cursor.next)}
+                onPreviousClick={() =>
+                    console.log('load prev page', cursor.prev)
+                }
+            />
         </Page>
     );
 };
