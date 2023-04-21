@@ -26,7 +26,8 @@ new Server({
                 return {
                     data: dataPaginated,
                     cursor: {
-                        next: hasNextPage && generateCursor(nextPage)
+                        next: hasNextPage && generateCursor(nextPage),
+                        prev: page > 0 && generateCursor(page - 1)
                     }
                 };
             },

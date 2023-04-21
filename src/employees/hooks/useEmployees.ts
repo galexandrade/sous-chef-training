@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Employee } from '../types';
 import { fetchEmployees } from '../api';
 import { Cursor } from '../../Server/types';
+import { useSearchParams } from 'react-router-dom';
 
 type UseEmployees = {
     data: Employee[];
@@ -15,9 +16,14 @@ export const useEmployees = (): UseEmployees => {
     const [data, setData] = useState([]);
     const [cursor, setCursor] = useState<Cursor>();
 
+    const [params] = useSearchParams();
+    const queryParamCursor = params.get('cursor');
+
     useEffect(() => {
         setIsLoading(true);
-        fetchEmployees()
+        fetchEmployees({
+            cursor: queryParamCursor
+        })
             .then((res) => {
                 setData(res.data);
                 setCursor(res.cursor);
@@ -26,7 +32,7 @@ export const useEmployees = (): UseEmployees => {
             .finally(() => {
                 setIsLoading(false);
             });
-    }, []);
+    }, [queryParamCursor]);
 
     return {
         data,
