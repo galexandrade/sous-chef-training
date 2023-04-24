@@ -12,6 +12,12 @@ const EmployeesTable = (props: Props) => {
 
     return (
         <DataTable
+            columns={[
+                {
+                    name: 'employee',
+                    label: 'Employee'
+                }
+            ]}
             items={data}
             isLoading={isLoading}
             hasNext={!!cursor?.next}
