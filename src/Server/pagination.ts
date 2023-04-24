@@ -1,5 +1,5 @@
 const CURSOR_HASH = 'CURSOR-PAGE';
-const LIMIT = 2;
+const LIMIT = 20;
 
 export const getCurrentPageFromCursor = (cursor?: string): number => {
     const DEFAULT_PAGE = 0;
