@@ -1,26 +1,10 @@
-import { DataTable, Page } from '@7shifts/sous-chef';
-import { useEmployees } from '../hooks/useEmployees';
-import { useSearchParams } from 'react-router-dom';
+import { Page } from '@7shifts/sous-chef';
+import EmployeesTable from '../components/EmployeesTable';
 
 const EmployeesPage = () => {
-    //This is for loading data into the page
-    const { isLoading, data, error, cursor } = useEmployees();
-    const [_, setQueryParam] = useSearchParams();
-
     return (
         <Page title="View Employees">
-            <DataTable
-                items={data}
-                isLoading={isLoading}
-                hasNext={!!cursor?.next}
-                hasPrevious={!!cursor?.prev}
-                onNextClick={() => {
-                    setQueryParam('?cursor=' + cursor.next);
-                }}
-                onPreviousClick={() => {
-                    setQueryParam('?cursor=' + cursor.prev);
-                }}
-            />
+            <EmployeesTable />
         </Page>
     );
 };
