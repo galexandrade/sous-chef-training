@@ -1,6 +1,7 @@
 import { DataTable } from '@7shifts/sous-chef';
 import { useEmployees } from '../../hooks/useEmployees';
 import { useSearchParams } from 'react-router-dom';
+import EmployeeRow from './EmployeeRow/EmployeeRow';
 
 type Props = {};
 
@@ -21,6 +22,7 @@ const EmployeesTable = (props: Props) => {
             onPreviousClick={() => {
                 setQueryParam('?cursor=' + cursor.prev);
             }}
+            itemComponent={EmployeeRow}
         />
     );
 };
