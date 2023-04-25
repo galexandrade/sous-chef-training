@@ -8,7 +8,7 @@ type Props = {};
 const EmployeesTable = (props: Props) => {
     //This is for loading data into the page
     const { isLoading, data, error, cursor } = useEmployees();
-    const [_, setQueryParam] = useSearchParams();
+    const [queryParams, setQueryParam] = useSearchParams();
 
     return (
         <DataTable
@@ -23,10 +23,12 @@ const EmployeesTable = (props: Props) => {
             hasNext={!!cursor?.next}
             hasPrevious={!!cursor?.prev}
             onNextClick={() => {
-                setQueryParam('?cursor=' + cursor.next);
+                queryParams.set('cursor', cursor.next);
+                setQueryParam(queryParams);
             }}
             onPreviousClick={() => {
-                setQueryParam('?cursor=' + cursor.prev);
+                queryParams.set('cursor', cursor.prev);
+                setQueryParam(queryParams);
             }}
             itemComponent={EmployeeRow}
         />

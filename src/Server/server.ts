@@ -18,6 +18,7 @@ new Server({
 
                 try {
                     let page = getCurrentPageFromCursor(cursor);
+                    console.log('page', page);
                     const nextPage = page + 1;
 
                     const dataPaginated = getPaginatedData(page, employees);
@@ -32,6 +33,7 @@ new Server({
                         }
                     };
                 } catch (error) {
+                    console.log(error);
                     return {
                         data: [],
                         cursor: {
