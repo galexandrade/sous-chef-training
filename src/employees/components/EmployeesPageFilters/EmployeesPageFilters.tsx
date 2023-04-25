@@ -15,7 +15,7 @@ import { STATUSES_OPTIONS } from '../../constants';
 const EmployeesPageFilters = () => {
     const searchRef = useRef<HTMLInputElement>();
     const [queryParams, setQueryParam] = useSearchParams();
-    const hasFilters = queryParams.has('search') || queryParams.has('statuses');
+    const hasFilters = queryParams.has('search') || queryParams.has('status');
 
     const handleResetFilters = () => {
         setQueryParam({});
@@ -51,6 +51,7 @@ const EmployeesPageFilters = () => {
                 }
                 onChange={(status) => {
                     queryParams.set('status', status.value);
+                    queryParams.delete('cursor');
                     setQueryParam(queryParams);
                 }}
                 asToolbarFilter

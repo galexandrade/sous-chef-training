@@ -1,7 +1,8 @@
-import { Page } from '@7shifts/sous-chef';
+import { Button, InlineBanner, Page } from '@7shifts/sous-chef';
 import EmployeesTable from '../components/EmployeesTable';
 import EmployeesPageActions from '../components/EmployeesPageActions/EmployeesPageActions';
 import EmployeesPageFilters from '../components/EmployeesPageFilters/EmployeesPageFilters';
+import EmployeesInviteBanner from '../components/EmployeesInviteBanner/EmployeesInviteBanner';
 
 const EmployeesPage = () => {
     return (
@@ -9,6 +10,7 @@ const EmployeesPage = () => {
             title="View Employees"
             actions={<EmployeesPageActions />}
             filterBar={<EmployeesPageFilters />}
+            banner={<EmployeesInviteBanner />}
         >
             <EmployeesTable />
         </Page>
