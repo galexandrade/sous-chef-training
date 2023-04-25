@@ -7,6 +7,7 @@ import {
 } from '@7shifts/sous-chef';
 import './employees-page-filters.scss';
 import { useSearchParams } from 'react-router-dom';
+import { debounce } from '../../../utils/debounce';
 
 const EmployeesPageFilters = () => {
     const [queryParams, setQueryParam] = useSearchParams();
@@ -16,11 +17,11 @@ const EmployeesPageFilters = () => {
                 <TextField
                     name="search"
                     placeholder="Search"
-                    value={queryParams.get('search') || ''}
+                    defaultValue={queryParams.get('search') || ''}
                     prefix={<IconSearch />}
-                    onChange={(search) => {
+                    onChange={debounce((search) => {
                         setQueryParam({ search });
-                    }}
+                    })}
                 />
             </div>
             <SelectField
