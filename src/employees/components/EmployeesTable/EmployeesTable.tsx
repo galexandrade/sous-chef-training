@@ -18,7 +18,7 @@ const EmployeesTable = (props: Props) => {
                     size="small"
                     title="No employees found"
                 >
-                    No employees match what you’re looking for. Try changing
+                    No employees match what you are looking for. Try changing
                     your filters to see other employees.
                 </EmptyState>
             </Inline>

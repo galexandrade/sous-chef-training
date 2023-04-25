@@ -1,3 +1,8 @@
+export type EmployeeStatus =
+    | 'NEEDS_CONTACT_INFO'
+    | 'INVITE_REQUIRED'
+    | 'INVITE_PENDING';
+
 export type Employee = {
     id: number;
     firstName: string;
@@ -5,4 +10,5 @@ export type Employee = {
     email: string;
     birtday: string;
     photo: string;
+    status?: EmployeeStatus;
 };
