@@ -14,16 +14,26 @@ new Server({
         this.get(
             '/employees',
             (schema, request) => {
-                const { cursor } = request.queryParams;
+                const { cursor, search } = request.queryParams;
 
                 try {
                     let page = getCurrentPageFromCursor(cursor);
-                    console.log('page', page);
                     const nextPage = page + 1;
 
-                    const dataPaginated = getPaginatedData(page, employees);
+                    const filteredEmployees = employees.filter((employee) => {
+                        const name = `${employee.firstName} ${employee.firstName}`;
+                        return name
+                            .toLocaleLowerCase()
+                            .includes(search.toLocaleLowerCase());
+                    });
+
+                    const dataPaginated = getPaginatedData(
+                        page,
+                        filteredEmployees
+                    );
                     const hasNextPage =
-                        getPaginatedData(page + 1, employees).length > 0;
+                        getPaginatedData(page + 1, filteredEmployees).length >
+                        0;
 
                     return {
                         data: dataPaginated,
@@ -33,7 +43,6 @@ new Server({
                         }
                     };
                 } catch (error) {
-                    console.log(error);
                     return {
                         data: [],
                         cursor: {
