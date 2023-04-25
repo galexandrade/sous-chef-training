@@ -20,12 +20,15 @@ new Server({
                     let page = getCurrentPageFromCursor(cursor);
                     const nextPage = page + 1;
 
-                    const filteredEmployees = employees.filter((employee) => {
-                        const name = `${employee.firstName} ${employee.firstName}`;
-                        return name
-                            .toLocaleLowerCase()
-                            .includes(search.toLocaleLowerCase());
-                    });
+                    const filteredEmployees =
+                        search === 'null'
+                            ? employees
+                            : employees.filter((employee) => {
+                                  const name = `${employee.firstName} ${employee.firstName}`;
+                                  return name
+                                      .toLocaleLowerCase()
+                                      .includes(search.toLocaleLowerCase());
+                              });
 
                     const dataPaginated = getPaginatedData(
                         page,
