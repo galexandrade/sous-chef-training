@@ -4,12 +4,11 @@ import { Employee } from './types';
 type Params = {
     cursor: string;
     search: string;
+    status: string;
 };
-export const fetchEmployees = ({
-    cursor,
-    search
-}: Params): Promise<PaginatedResponse<Employee[]>> => {
-    return fetch(`/api/employees?cursor=${cursor}&search=${search}`).then(
-        (res) => res.json()
-    );
+export const fetchEmployees = (
+    params: Params
+): Promise<PaginatedResponse<Employee[]>> => {
+    const queryParams = new URLSearchParams(params).toString();
+    return fetch(`/api/employees?${queryParams}`).then((res) => res.json());
 };

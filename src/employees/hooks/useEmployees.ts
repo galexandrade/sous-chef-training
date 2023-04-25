@@ -19,12 +19,14 @@ export const useEmployees = (): UseEmployees => {
     const [params] = useSearchParams();
     const queryParamCursor = params.get('cursor');
     const queryParamSearch = params.get('search');
+    const queryParamStatus = params.get('status');
 
     useEffect(() => {
         setIsLoading(true);
         fetchEmployees({
             cursor: queryParamCursor,
-            search: queryParamSearch
+            search: queryParamSearch,
+            status: queryParamStatus
         })
             .then((res) => {
                 setData(res.data);
@@ -34,7 +36,7 @@ export const useEmployees = (): UseEmployees => {
             .finally(() => {
                 setIsLoading(false);
             });
-    }, [queryParamCursor, queryParamSearch]);
+    }, [queryParamCursor, queryParamSearch, queryParamStatus]);
 
     return {
         data,

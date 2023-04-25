@@ -34,21 +34,23 @@ const EmployeesPageFilters = () => {
                     defaultValue={queryParams.get('search') || ''}
                     prefix={<IconSearch />}
                     onChange={debounce((search) => {
-                        setQueryParam({ search });
+                        queryParams.set('search', search);
+                        queryParams.delete('cursor');
+                        setQueryParam(queryParams);
                     })}
                 />
             </div>
             <SelectField
-                name="statuses"
+                name="status"
                 placeholder="All statuses"
                 options={Object.values(STATUSES_OPTIONS)}
                 prefix={<IconMinusCircle />}
                 value={
-                    STATUSES_OPTIONS[queryParams.get('statuses')] ||
+                    STATUSES_OPTIONS[queryParams.get('status')] ||
                     STATUSES_OPTIONS.ALL
                 }
                 onChange={(status) => {
-                    queryParams.set('statuses', status.value);
+                    queryParams.set('status', status.value);
                     setQueryParam(queryParams);
                 }}
                 asToolbarFilter

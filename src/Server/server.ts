@@ -14,21 +14,30 @@ new Server({
         this.get(
             '/employees',
             (schema, request) => {
-                const { cursor, search } = request.queryParams;
+                const { cursor, search, status } = request.queryParams;
 
                 try {
                     let page = getCurrentPageFromCursor(cursor);
                     const nextPage = page + 1;
 
-                    const filteredEmployees =
-                        search === 'null'
-                            ? employees
-                            : employees.filter((employee) => {
-                                  const name = `${employee.firstName} ${employee.firstName}`;
-                                  return name
-                                      .toLocaleLowerCase()
-                                      .includes(search.toLocaleLowerCase());
-                              });
+                    const filteredEmployees = employees.filter((employee) => {
+                        let doesNameMatch = true;
+                        let doesStatusMatch = true;
+                        if (search !== 'null') {
+                            const name = `${employee.firstName} ${employee.firstName}`;
+                            doesNameMatch = name
+                                .toLocaleLowerCase()
+                                .includes(search.toLocaleLowerCase());
+                        }
+                        if (status !== 'null') {
+                            if (!employee.status) {
+                                doesStatusMatch = false;
+                            } else {
+                                doesStatusMatch = employee.status === status;
+                            }
+                        }
+                        return doesNameMatch && doesStatusMatch;
+                    });
 
                     const dataPaginated = getPaginatedData(
                         page,
