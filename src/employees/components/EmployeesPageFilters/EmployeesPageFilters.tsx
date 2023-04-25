@@ -10,6 +10,7 @@ import './employees-page-filters.scss';
 import { useSearchParams } from 'react-router-dom';
 import { debounce } from '../../../utils/debounce';
 import { useRef } from 'react';
+import { STATUSES_OPTIONS } from '../../constants';
 
 const EmployeesPageFilters = () => {
     const searchRef = useRef<HTMLInputElement>();
@@ -40,8 +41,17 @@ const EmployeesPageFilters = () => {
             <SelectField
                 name="statuses"
                 placeholder="All statuses"
-                options={[]}
+                options={Object.values(STATUSES_OPTIONS)}
                 prefix={<IconMinusCircle />}
+                value={
+                    STATUSES_OPTIONS[queryParams.get('statuses')] ||
+                    STATUSES_OPTIONS.ALL
+                }
+                onChange={(status) => {
+                    queryParams.set('statuses', status.value);
+                    setQueryParam(queryParams);
+                }}
+                asToolbarFilter
             />
             {hasFilters && (
                 <Button theme="link-primary" onClick={handleResetFilters}>
