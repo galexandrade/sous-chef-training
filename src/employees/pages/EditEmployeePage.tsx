@@ -9,7 +9,7 @@ const EditEmployeePage = (props: Props) => {
     const { id } = useParams();
     const { employee, isLoading, error } = useEmployee(id);
     return (
-        <Page title="Edit employee">
+        <Page title="Edit employee" breadcrumbs="Employees">
             {isLoading && <Spinner block />}
             {error && <Text color="red">Oh no! Some error happened!</Text>}
             {!isLoading && employee && <EditEmployeeForm employee={employee} />}

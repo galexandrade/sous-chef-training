@@ -9,10 +9,12 @@ import {
 } from '@7shifts/sous-chef';
 import { Employee } from '../../../types';
 import EmployeeStatusBadge from '../EmployeeStatusBadge/EmployeeStatusBadge';
+import { useNavigate } from 'react-router-dom';
 
 const EmployeeRow = ({ item }: DataTableCustomComponent<Employee>) => {
+    const navigate = useNavigate();
     return (
-        <DataTableRow>
+        <DataTableRow onClick={() => navigate(`./${item.id}`)}>
             <DataTableCell columnIndex={0}>
                 <Inline alignItems="center" space={12}>
                     <Avatar
