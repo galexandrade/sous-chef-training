@@ -12,6 +12,7 @@ import {
 } from '@7shifts/sous-chef';
 import { useFormik } from 'formik';
 import schema, { FormValues } from './schema';
+import { addEmployees } from '../../api';
 
 type Props = {
     onClose: () => void;
@@ -26,18 +27,20 @@ const AddEmployeeModal = ({ onClose }: Props) => {
             birthday: null
         },
         validationSchema: schema,
-        onSubmit: (values: FormValues) => {
+        onSubmit: (values: FormValues, { setSubmitting }) => {
             console.log('Will submit values', values);
+            setSubmitting(true);
+            addEmployees(values).then((createdEmployee) => {
+                console.log(createdEmployee);
+                setSubmitting(false);
+                onClose();
+            });
         }
     });
 
     return (
         <Modal header="Add employee" onClose={onClose}>
-            <Form
-                onSubmit={() => console.log('Will submit')}
-                stackContent={false}
-                formik={formik}
-            >
+            <Form stackContent={false} formik={formik}>
                 <ModalBody>
                     <Stack>
                         <InlineBanner>
@@ -68,6 +71,7 @@ const AddEmployeeModal = ({ onClose }: Props) => {
                             <Button
                                 type="submit"
                                 disabled={!formik.isValid || !formik.dirty}
+                                loading={formik.isSubmitting}
                             >
                                 Add employee
                             </Button>

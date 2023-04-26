@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-const schema = yup.object({
+const schema = yup.object().shape({
     firstName: yup.string().required('First name is required'),
     lastName: yup.string().required('Last name is required'),
     email: yup.string().email('Invalid email').required('Email is required'),

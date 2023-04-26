@@ -78,12 +78,23 @@ new Server({
             }
         );
 
-        this.post('/employees', (schema: any, request) => {
-            const attrs = JSON.parse(request.requestBody);
+        this.post(
+            '/employees',
+            (schema: any, request) => {
+                const newEmployee = JSON.parse(request.requestBody);
 
-            attrs.id = String(schema.employees.all().models.length + 1);
+                newEmployee.id = String(
+                    schema.employees.all().models.length + 1
+                );
 
-            return schema.employees.create(attrs);
-        });
+                return schema.employees.create({
+                    ...newEmployee,
+                    photo: `https://i.pravatar.cc/250?u=${newEmployee.email}`
+                });
+            },
+            {
+                timing: TIMING
+            }
+        );
     }
 });
