@@ -4,7 +4,8 @@ import {
     Form,
     FormFooter,
     FormRow,
-    TextField
+    TextField,
+    toast
 } from '@7shifts/sous-chef';
 import { Employee } from '../../types';
 import { useFormik } from 'formik';
@@ -26,12 +27,17 @@ const EditEmployeeForm = ({ employee }: Props) => {
             birthday: new Date(employee.birthday)
         },
         validationSchema: schema,
-        onSubmit: (values: FormValues, { setSubmitting }) => {
-            console.log('Will submit values', values);
+        onSubmit: (values: FormValues, { setSubmitting, resetForm }) => {
             setSubmitting(true);
-            editEmployee(employee.id, values).then((res) => {
-                setSubmitting(false);
-            });
+            editEmployee(employee.id, values)
+                .then(() => {
+                    resetForm({ values });
+                    toast('Employee edited');
+                })
+                .catch(() => {
+                    toast('Error on editing the employee', 'danger');
+                })
+                .finally(() => setSubmitting(false));
         }
     });
 

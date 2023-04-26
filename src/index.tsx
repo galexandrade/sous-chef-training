@@ -6,7 +6,7 @@ import './Server/server';
 
 import './index.css';
 import '@7shifts/sous-chef/dist/index.css';
-import { Modal } from '@7shifts/sous-chef';
+import { Modal, SousChefProvider } from '@7shifts/sous-chef';
 
 const rootElement = document.getElementById('root') as HTMLElement;
 
@@ -15,7 +15,9 @@ Modal.setAppElement(rootElement);
 const root = ReactDOM.createRoot(rootElement);
 root.render(
     <React.StrictMode>
-        <Router />
+        <SousChefProvider>
+            <Router />
+        </SousChefProvider>
     </React.StrictMode>
 );
 
