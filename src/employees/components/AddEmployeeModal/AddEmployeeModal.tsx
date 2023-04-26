@@ -11,7 +11,7 @@ import {
     TextField
 } from '@7shifts/sous-chef';
 import { useFormik } from 'formik';
-import schema from './schema';
+import schema, { FormValues } from './schema';
 
 type Props = {
     onClose: () => void;
@@ -26,8 +26,8 @@ const AddEmployeeModal = ({ onClose }: Props) => {
             birthday: null
         },
         validationSchema: schema,
-        onSubmit: (values) => {
-            console.log('Will submit values');
+        onSubmit: (values: FormValues) => {
+            console.log('Will submit values', values);
         }
     });
 
