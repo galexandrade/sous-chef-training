@@ -25,7 +25,7 @@ const EmployeeRow = ({ item }: DataTableCustomComponent<Employee>) => {
         },
         {
             action: 'delete',
-            onAction: handleNavigateToEdit,
+            onAction: () => console.log('Will delete'),
             label: 'Delete'
         }
     ];
