@@ -78,6 +78,18 @@ new Server({
             }
         );
 
+        this.get(
+            '/employees/:id',
+            (schema: any, request) => {
+                const id = request.params.id;
+
+                return schema.employees.find(id);
+            },
+            {
+                timing: TIMING
+            }
+        );
+
         this.post(
             '/employees',
             (schema: any, request) => {

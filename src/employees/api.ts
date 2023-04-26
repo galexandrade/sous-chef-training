@@ -13,6 +13,14 @@ export const fetchEmployees = (
     return fetch(`/api/employees?${queryParams}`).then((res) => res.json());
 };
 
+export const fetchEmployee = (employeeId: string): Promise<Employee> => {
+    return fetch(`/api/employees/${employeeId}`)
+        .then((res) => res.json())
+        .then((res) => {
+            return res.employee;
+        });
+};
+
 type AddEmployeeParams = {
     firstName?: string;
     lastName?: string;
