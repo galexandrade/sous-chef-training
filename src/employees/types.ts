@@ -8,7 +8,7 @@ export type Employee = {
     firstName: string;
     lastName: string;
     email: string;
-    birtday: string;
+    birthday: string;
     photo: string;
     status?: EmployeeStatus;
 };
