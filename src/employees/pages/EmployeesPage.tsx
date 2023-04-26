@@ -1,4 +1,4 @@
-import { Button, InlineBanner, Page } from '@7shifts/sous-chef';
+import { Page } from '@7shifts/sous-chef';
 import EmployeesTable from '../components/EmployeesTable';
 import EmployeesPageActions from '../components/EmployeesPageActions/EmployeesPageActions';
 import EmployeesPageFilters from '../components/EmployeesPageFilters/EmployeesPageFilters';
