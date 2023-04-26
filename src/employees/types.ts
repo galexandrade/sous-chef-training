@@ -3,6 +3,11 @@ export type EmployeeStatus =
     | 'INVITE_REQUIRED'
     | 'INVITE_PENDING';
 
+type Contact = {
+    name: string;
+    email: string;
+};
+
 export type Employee = {
     id: string;
     firstName: string;
@@ -11,4 +16,5 @@ export type Employee = {
     birthday: string;
     photo: string;
     status?: EmployeeStatus;
+    contacts?: Contact[];
 };
