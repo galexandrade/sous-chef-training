@@ -46,6 +46,7 @@ const EmployeesTable = (props: Props) => {
                 setQueryParam(queryParams);
             }}
             itemComponent={EmployeeRow}
+            showActionMenu
         />
     );
 };

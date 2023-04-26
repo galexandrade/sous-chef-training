@@ -1,8 +1,10 @@
 import {
     Avatar,
+    DataTableAction,
     DataTableCell,
     DataTableCustomComponent,
     DataTableRow,
+    IconPencil,
     Inline,
     Stack,
     Text
@@ -13,8 +15,22 @@ import { useNavigate } from 'react-router-dom';
 
 const EmployeeRow = ({ item }: DataTableCustomComponent<Employee>) => {
     const navigate = useNavigate();
+    const handleNavigateToEdit = () => navigate(`./${item.id}`);
+    const actions: DataTableAction[] = [
+        {
+            action: 'edit',
+            onAction: handleNavigateToEdit,
+            label: <IconPencil />,
+            showInKebab: false
+        },
+        {
+            action: 'delete',
+            onAction: handleNavigateToEdit,
+            label: 'Delete'
+        }
+    ];
     return (
-        <DataTableRow onClick={() => navigate(`./${item.id}`)}>
+        <DataTableRow onClick={handleNavigateToEdit} actions={actions}>
             <DataTableCell columnIndex={0}>
                 <Inline alignItems="center" space={12}>
                     <Avatar
