@@ -4,7 +4,7 @@ export type EmployeeStatus =
     | 'INVITE_PENDING';
 
 export type Employee = {
-    id: number;
+    id: string;
     firstName: string;
     lastName: string;
     email: string;

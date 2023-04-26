@@ -108,5 +108,19 @@ new Server({
                 timing: TIMING
             }
         );
+
+        this.put(
+            '/employees/:id',
+            (schema: any, request) => {
+                const id = request.params.id;
+                const editEmployee = JSON.parse(request.requestBody);
+                const employee = schema.employees.find(id);
+
+                return employee.update(editEmployee);
+            },
+            {
+                timing: TIMING
+            }
+        );
     }
 });

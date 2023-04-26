@@ -10,6 +10,7 @@ import { Employee } from '../../types';
 import { useFormik } from 'formik';
 import schema, { FormValues } from './schema';
 import { useNavigate } from 'react-router-dom';
+import { editEmployee } from '../../api';
 
 type Props = {
     employee: Employee;
@@ -28,6 +29,9 @@ const EditEmployeeForm = ({ employee }: Props) => {
         onSubmit: (values: FormValues, { setSubmitting }) => {
             console.log('Will submit values', values);
             setSubmitting(true);
+            editEmployee(employee.id, values).then((res) => {
+                setSubmitting(false);
+            });
         }
     });
 
@@ -51,6 +55,7 @@ const EditEmployeeForm = ({ employee }: Props) => {
                         <Button
                             type="submit"
                             disabled={!formik.isValid || !formik.dirty}
+                            loading={formik.isSubmitting}
                         >
                             Save
                         </Button>
