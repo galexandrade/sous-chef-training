@@ -37,7 +37,7 @@ new Server({
                                     .toLocaleLowerCase()
                                     .includes(search.toLocaleLowerCase());
                             }
-                            if (status !== 'null') {
+                            if (status !== 'null' && status !== 'ALL') {
                                 if (!employee.status) {
                                     doesStatusMatch = false;
                                 } else {

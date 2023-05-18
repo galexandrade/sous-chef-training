@@ -6,7 +6,7 @@ export const EMPLOYEE_STATUS = {
 
 export const STATUSES_OPTIONS = {
     ALL: {
-        value: 'All',
+        value: 'ALL' as const,
         label: 'All statuses'
     },
     [EMPLOYEE_STATUS.NEEDS_CONTACT_INFO]: {
