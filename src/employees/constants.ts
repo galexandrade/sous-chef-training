@@ -22,3 +22,5 @@ export const STATUSES_OPTIONS = {
         label: 'Invite pending'
     }
 };
+
+export const STATUSES_FILTER_OPTIONS = Object.values(STATUSES_OPTIONS);
