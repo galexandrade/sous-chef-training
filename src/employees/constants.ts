@@ -6,7 +6,7 @@ export const EMPLOYEE_STATUS = {
 
 export const STATUSES_OPTIONS = {
     ALL: {
-        value: 'All',
+        value: null,
         label: 'All statuses'
     },
     [EMPLOYEE_STATUS.NEEDS_CONTACT_INFO]: {
@@ -22,3 +22,5 @@ export const STATUSES_OPTIONS = {
         label: 'Invite pending'
     }
 };
+
+export const STATUSES_FILTER_OPTIONS = Object.values(STATUSES_OPTIONS);
