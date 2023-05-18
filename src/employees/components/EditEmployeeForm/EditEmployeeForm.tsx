@@ -10,7 +10,7 @@ import {
 } from '@7shifts/sous-chef';
 import { Employee } from '../../types';
 import { useFormik } from 'formik';
-import schema from './schema';
+import schema, { FormValues } from './schema';
 import { editEmployee } from '../../api';
 
 type Props = {
@@ -18,12 +18,12 @@ type Props = {
 };
 
 const EditEmployeeForm = ({ employee }: Props) => {
-    const formik = useFormik({
+    const formik = useFormik<FormValues>({
         initialValues: {
             firstName: employee.firstName,
             lastName: employee.lastName,
             email: employee.email,
-            birthday: employee.birthday
+            birthday: new Date(employee.birthday)
         },
         validationSchema: schema,
         onSubmit: (formValues, { setSubmitting }) => {
@@ -39,7 +39,6 @@ const EditEmployeeForm = ({ employee }: Props) => {
         }
     });
 
-    console.log(employee);
     return (
         <Form formik={formik}>
             <FormSection title="Personal information">

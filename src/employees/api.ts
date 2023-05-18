@@ -40,7 +40,7 @@ type EditEmployeeFormData = {
     firstName?: string;
     lastName?: string;
     email?: string;
-    birthday?: string;
+    birthday?: Date;
 };
 export const editEmployee = (
     employeeId: string,
