@@ -14,7 +14,10 @@ export const useEmployees = (): UseEmployees => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState();
     const [data, setData] = useState([]);
-    const [cursor, setCursor] = useState<Cursor>();
+    const [cursor, setCursor] = useState<Cursor>({
+        next: null,
+        prev: null
+    });
 
     const [params] = useSearchParams();
     const queryParamCursor = params.get('cursor');
