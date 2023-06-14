@@ -2,10 +2,10 @@ import { Page } from '@7shifts/sous-chef';
 import EmployeesPageActions from '../components/EmployeesPageActions/EmployeesPageActions';
 import EmployeesInviteBanner from '../components/EmployeesInviteBanner/EmployeesInviteBanner';
 import EmployeesPageFilters from '../components/EmployeesPageFilters/EmployeesPageFilters';
+import EmployeesTable from '../components/EmployeesTable/EmployeesTable';
 
 const EmployeesPage = () => {
     //This is for loading data into the page
-    //const { isLoading, data, error, cursor } = useEmployees();
     return (
         <Page
             title="Employees"
@@ -13,7 +13,7 @@ const EmployeesPage = () => {
             banner={<EmployeesInviteBanner />}
             filterBar={<EmployeesPageFilters />}
         >
-            Page content here
+            <EmployeesTable />
         </Page>
     );
 };
