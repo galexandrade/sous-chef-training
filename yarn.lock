@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@7shifts/sous-chef@3.12.0":
-  version "3.12.0"
-  resolved "https://registry.yarnpkg.com/@7shifts/sous-chef/-/sous-chef-3.12.0.tgz#5ca5fa7c36b31ae738d1d3cfbe2e3d02a3d64fce"
-  integrity sha512-fTs0o0PZQnOiHL/lFOc8VUvTNAeAKr0756nzRuD0tWcaw81a2I4Ovo4tVmuRrkthxwxYBMyxloejxdICEHzJ2w==
+"@7shifts/sous-chef@3.13.2":
+  version "3.13.2"
+  resolved "https://registry.yarnpkg.com/@7shifts/sous-chef/-/sous-chef-3.13.2.tgz#90b3adc12b034290d101d3c37e9b02c69e1cb1b7"
+  integrity sha512-DRvxW4xE8dTTLe/NJYhTdv8i16n7P7001lRJjbYWE2CS2Hadk9RHS0EsDYCRNPWUCrAeilPTb7srUp4Y0g+vJw==
   dependencies:
     classnames "^2.3.2"
     date-fns "2.29.3"
