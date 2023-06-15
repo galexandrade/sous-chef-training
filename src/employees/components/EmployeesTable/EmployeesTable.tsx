@@ -1,11 +1,15 @@
 import { DataTable } from '@7shifts/sous-chef';
 import { useEmployees } from '../../hooks/useEmployees';
 import EmployeesRow from './EmployeesRow';
+import { useSearchParams } from 'react-router-dom';
 
 type Props = {};
 
 const EmployeesTable = (props: Props) => {
-    const { data, isLoading } = useEmployees();
+    const { data, isLoading, cursor } = useEmployees();
+    const [queryParams, setQueryParams] = useSearchParams();
+
+    console.log(cursor);
 
     const columns = [
         {
@@ -21,6 +25,16 @@ const EmployeesTable = (props: Props) => {
             columns={columns}
             itemComponent={EmployeesRow}
             showActionMenu
+            hasNext={Boolean(cursor.next)}
+            hasPrevious={Boolean(cursor.prev)}
+            onNextClick={() => {
+                queryParams.set('cursor', cursor.next);
+                setQueryParams(queryParams);
+            }}
+            onPreviousClick={() => {
+                queryParams.set('cursor', cursor.prev);
+                setQueryParams(queryParams);
+            }}
         />
     );
 };
