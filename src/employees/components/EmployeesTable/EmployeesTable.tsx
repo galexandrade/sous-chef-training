@@ -9,12 +9,8 @@ const EmployeesTable = (props: Props) => {
 
     const columns = [
         {
-            label: 'First name',
-            name: 'firstName'
-        },
-        {
-            label: 'Email',
-            name: 'lastName'
+            label: 'Employee',
+            name: 'employee'
         }
     ];
 
