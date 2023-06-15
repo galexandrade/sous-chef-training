@@ -7,13 +7,22 @@ import {
     Text
 } from '@7shifts/sous-chef';
 import { Employee } from '../../../types';
+import EmployeeStatusBadge from '../EmployeeStatusBadge';
 
 const EmployeesRow = ({ item }: DataTableCustomComponent<Employee>) => {
     return (
         <DataTableRow>
             <DataTableCell columnIndex={0}>
                 <Inline space={12} alignItems="center">
-                    <Avatar url={item.photo} size="large" />
+                    <Avatar
+                        url={item.photo}
+                        size="large"
+                        badge={
+                            item.status && (
+                                <EmployeeStatusBadge status={item.status} />
+                            )
+                        }
+                    />
                     <Text>
                         {item.firstName} {item.lastName}
                     </Text>
