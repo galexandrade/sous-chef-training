@@ -2,6 +2,7 @@ import { Page } from '@7shifts/sous-chef';
 import EmployeesPageActions from '../components/EmployeesPageActions';
 import EmployeesInviteBanner from '../components/EmployeesInviteBanner';
 import EmployeesPageFilters from '../components/EmployeesPageFilters';
+import EmployeesTable from '../components/EmployeesTable';
 
 const EmployeesPage = () => {
     //This is for loading data into the page
@@ -13,7 +14,7 @@ const EmployeesPage = () => {
             banner={<EmployeesInviteBanner />}
             filterBar={<EmployeesPageFilters />}
         >
-            Page content here
+            <EmployeesTable />
         </Page>
     );
 };
