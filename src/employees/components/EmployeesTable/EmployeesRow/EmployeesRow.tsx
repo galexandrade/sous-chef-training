@@ -1,8 +1,10 @@
 import {
     Avatar,
+    DataTableAction,
     DataTableCell,
     DataTableCustomComponent,
     DataTableRow,
+    IconPencil,
     Inline,
     Stack,
     Text
@@ -11,8 +13,21 @@ import { Employee } from '../../../types';
 import EmployeeStatusBadge from '../EmployeeStatusBadge';
 
 const EmployeesRow = ({ item }: DataTableCustomComponent<Employee>) => {
+    const ACTIONS: DataTableAction[] = [
+        {
+            action: 'delete',
+            label: 'Delete',
+            onAction: () => console.log('Will delete')
+        },
+        {
+            action: 'edit',
+            label: <IconPencil />,
+            onAction: () => console.log('Will edit'),
+            showInKebab: false
+        }
+    ];
     return (
-        <DataTableRow>
+        <DataTableRow actions={ACTIONS}>
             <DataTableCell columnIndex={0}>
                 <Inline space={12} alignItems="center">
                     <Avatar
