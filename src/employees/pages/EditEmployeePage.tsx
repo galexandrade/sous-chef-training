@@ -1,7 +1,13 @@
+import { Page } from '@7shifts/sous-chef';
+
 type Props = {};
 
 const EditEmployeePage = (props: Props) => {
-    return <div>Edit page</div>;
+    return (
+        <Page title="Edit employee" breadcrumbs="Employees">
+            Form will go here
+        </Page>
+    );
 };
 
 export default EditEmployeePage;
