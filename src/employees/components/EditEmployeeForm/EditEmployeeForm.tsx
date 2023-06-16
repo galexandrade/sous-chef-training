@@ -5,6 +5,8 @@ import {
     FormFooter,
     FormRow,
     FormSection,
+    IconTrash,
+    Inline,
     TextField
 } from '@7shifts/sous-chef';
 import { useNavigate } from 'react-router-dom';
@@ -23,7 +25,17 @@ const EditEmployeeForm = ({ employee }: Props) => {
             firstName: employee.firstName,
             lastName: employee.lastName,
             email: employee.email,
-            birthday: new Date(employee.birthday)
+            birthday: new Date(employee.birthday),
+            contacts: [
+                {
+                    firstName: 'First index',
+                    email: 'email1'
+                },
+                {
+                    firstName: 'Second index',
+                    email: 'email 2'
+                }
+            ]
         },
         validationSchema: schema,
         onSubmit: (values) => {
@@ -46,6 +58,27 @@ const EditEmployeeForm = ({ employee }: Props) => {
                         disabledDays={(day) => day > new Date()}
                     />
                 </FormRow>
+            </FormSection>
+            <FormSection title="Contacts">
+                <FormRow>
+                    <TextField name="contacts[0].firstName" label="Name" />
+                    <Inline flex={[1]} space={8}>
+                        <TextField name="contacts[0].email" label="Email" />
+                        <Button theme="link-icon" mt={24}>
+                            <IconTrash />
+                        </Button>
+                    </Inline>
+                </FormRow>
+                <FormRow>
+                    <TextField name="contacts[1].firstName" />
+                    <Inline flex={[1]} space={8}>
+                        <TextField name="contacts[1].email" />
+                        <Button theme="link-icon">
+                            <IconTrash />
+                        </Button>
+                    </Inline>
+                </FormRow>
+                <Button theme="link-primary">Add contact</Button>
             </FormSection>
             <FormFooter
                 actions={{
