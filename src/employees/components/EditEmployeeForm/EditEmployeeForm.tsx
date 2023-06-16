@@ -7,19 +7,34 @@ import {
     TextField
 } from '@7shifts/sous-chef';
 import { useNavigate } from 'react-router-dom';
+import { Employee } from '../../types';
 
-type Props = {};
+type Props = {
+    employee: Employee;
+};
 
-const EditEmployeeForm = (props: Props) => {
+const EditEmployeeForm = ({ employee }: Props) => {
     const navigate = useNavigate();
     return (
         <Form onSubmit={(formData) => console.log(formData)}>
             <FormSection title="Personal information">
                 <FormRow>
-                    <TextField name="firstName" label="First Name" />
-                    <TextField name="lastName" label="Last Name" />
+                    <TextField
+                        name="firstName"
+                        label="First Name"
+                        defaultValue={employee.firstName}
+                    />
+                    <TextField
+                        name="lastName"
+                        label="Last Name"
+                        defaultValue={employee.lastName}
+                    />
                 </FormRow>
-                <TextField name="email" label="Email" />
+                <TextField
+                    name="email"
+                    label="Email"
+                    defaultValue={employee.email}
+                />
             </FormSection>
             <FormFooter
                 actions={{
