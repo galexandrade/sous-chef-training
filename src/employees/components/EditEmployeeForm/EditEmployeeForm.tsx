@@ -1,5 +1,6 @@
 import {
     Button,
+    DateField,
     Form,
     FormFooter,
     FormRow,
@@ -20,7 +21,8 @@ const EditEmployeeForm = ({ employee }: Props) => {
         initialValues: {
             firstName: employee.firstName,
             lastName: employee.lastName,
-            email: employee.email
+            email: employee.email,
+            birthday: new Date(employee.birthday)
         },
         onSubmit: (values) => {
             alert(JSON.stringify(values, null, 2));
@@ -35,6 +37,13 @@ const EditEmployeeForm = ({ employee }: Props) => {
                     <TextField name="lastName" label="Last Name" />
                 </FormRow>
                 <TextField name="email" label="Email" />
+                <FormRow columns={2}>
+                    <DateField
+                        name="birthday"
+                        label="Birthday"
+                        disabledDays={(day) => day > new Date()}
+                    />
+                </FormRow>
             </FormSection>
             <FormFooter
                 actions={{
