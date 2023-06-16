@@ -7,7 +7,16 @@ const schema = yup.object({
     birthday: yup
         .date()
         .max(new Date(), "Birthday can't be in the future")
-        .required('Birthday is required')
+        .required('Birthday is required'),
+    contacts: yup.array().of(
+        yup.object({
+            firstName: yup.string().required('Name is required'),
+            email: yup
+                .string()
+                .email('Invalid email')
+                .required('Email is required')
+        })
+    )
 });
 
 export type FormValues = yup.InferType<typeof schema>;
