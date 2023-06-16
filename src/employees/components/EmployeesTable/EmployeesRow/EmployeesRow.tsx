@@ -11,8 +11,12 @@ import {
 } from '@7shifts/sous-chef';
 import { Employee } from '../../../types';
 import EmployeeStatusBadge from '../EmployeeStatusBadge';
+import { useNavigate } from 'react-router-dom';
 
 const EmployeesRow = ({ item }: DataTableCustomComponent<Employee>) => {
+    const navigate = useNavigate();
+    const handleNavigateToEditPage = () => navigate(`./${item.id}`);
+
     const ACTIONS: DataTableAction[] = [
         {
             action: 'delete',
@@ -22,12 +26,12 @@ const EmployeesRow = ({ item }: DataTableCustomComponent<Employee>) => {
         {
             action: 'edit',
             label: <IconPencil />,
-            onAction: () => console.log('Will edit'),
+            onAction: handleNavigateToEditPage,
             showInKebab: false
         }
     ];
     return (
-        <DataTableRow actions={ACTIONS}>
+        <DataTableRow actions={ACTIONS} onClick={handleNavigateToEditPage}>
             <DataTableCell columnIndex={0}>
                 <Inline space={12} alignItems="center">
                     <Avatar
