@@ -10,6 +10,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { Employee } from '../../types';
 import { useFormik } from 'formik';
+import schema from './schema';
 
 type Props = {
     employee: Employee;
@@ -24,6 +25,7 @@ const EditEmployeeForm = ({ employee }: Props) => {
             email: employee.email,
             birthday: new Date(employee.birthday)
         },
+        validationSchema: schema,
         onSubmit: (values) => {
             alert(JSON.stringify(values, null, 2));
         }
@@ -47,7 +49,14 @@ const EditEmployeeForm = ({ employee }: Props) => {
             </FormSection>
             <FormFooter
                 actions={{
-                    primary: <Button type="submit">Save</Button>,
+                    primary: (
+                        <Button
+                            type="submit"
+                            disabled={!formik.isValid || !formik.dirty}
+                        >
+                            Save
+                        </Button>
+                    ),
                     secondary: (
                         <Button onClick={() => navigate('..')}>Cancel</Button>
                     )
