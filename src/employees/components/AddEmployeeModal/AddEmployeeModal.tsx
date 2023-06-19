@@ -1,4 +1,15 @@
-import { Button, Modal, ModalBody, ModalFooter } from '@7shifts/sous-chef';
+import {
+    Button,
+    DateField,
+    Form,
+    FormRow,
+    InlineBanner,
+    Modal,
+    ModalBody,
+    ModalFooter,
+    Stack,
+    TextField
+} from '@7shifts/sous-chef';
 
 type Props = {
     onClose: () => void;
@@ -7,13 +18,34 @@ type Props = {
 const AddEmployeeModal = ({ onClose }: Props) => {
     return (
         <Modal header="Add employee" onClose={onClose}>
-            <ModalBody>Form will go here</ModalBody>
-            <ModalFooter
-                actions={{
-                    primary: <Button>Add employee</Button>,
-                    secondary: <Button onClick={onClose}>Close</Button>
-                }}
-            />
+            <Form stackContent={false}>
+                <ModalBody>
+                    <Stack>
+                        <InlineBanner>
+                            You can complete the employee information after
+                            adding the employee.
+                        </InlineBanner>
+                        <FormRow>
+                            <TextField name="firstName" label="First Name" />
+                            <TextField name="lastName" label="Last Name" />
+                        </FormRow>
+                        <TextField name="email" label="Email" />
+                        <FormRow columns={2}>
+                            <DateField
+                                name="birthday"
+                                label="Birthday"
+                                disabledDays={(day) => day > new Date()}
+                            />
+                        </FormRow>
+                    </Stack>
+                </ModalBody>
+                <ModalFooter
+                    actions={{
+                        primary: <Button type="submit">Add employee</Button>,
+                        secondary: <Button onClick={onClose}>Close</Button>
+                    }}
+                />
+            </Form>
         </Modal>
     );
 };
