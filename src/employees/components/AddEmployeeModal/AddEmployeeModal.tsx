@@ -10,15 +10,29 @@ import {
     Stack,
     TextField
 } from '@7shifts/sous-chef';
+import { useFormik } from 'formik';
+import schema, { FormValues } from './schema';
 
 type Props = {
     onClose: () => void;
 };
 
 const AddEmployeeModal = ({ onClose }: Props) => {
+    const formik = useFormik({
+        initialValues: {
+            firstName: '',
+            lastName: '',
+            email: '',
+            birthday: new Date()
+        },
+        validationSchema: schema,
+        onSubmit: (formValues: FormValues) => {
+            console.log(formValues);
+        }
+    });
     return (
         <Modal header="Add employee" onClose={onClose}>
-            <Form stackContent={false}>
+            <Form stackContent={false} formik={formik}>
                 <ModalBody>
                     <Stack>
                         <InlineBanner>
@@ -41,7 +55,14 @@ const AddEmployeeModal = ({ onClose }: Props) => {
                 </ModalBody>
                 <ModalFooter
                     actions={{
-                        primary: <Button type="submit">Add employee</Button>,
+                        primary: (
+                            <Button
+                                type="submit"
+                                disabled={!formik.isValid || !formik.dirty}
+                            >
+                                Add employee
+                            </Button>
+                        ),
                         secondary: <Button onClick={onClose}>Close</Button>
                     }}
                 />
