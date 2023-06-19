@@ -8,12 +8,14 @@ import {
     IconTrash,
     Inline,
     Stack,
-    TextField
+    TextField,
+    toast
 } from '@7shifts/sous-chef';
 import { useNavigate } from 'react-router-dom';
 import { Employee } from '../../types';
 import { FieldArray, FormikProvider, useFormik } from 'formik';
 import schema from './schema';
+import { editEmployee } from '../../api';
 
 type Props = {
     employee: Employee;
@@ -27,24 +29,21 @@ const EditEmployeeForm = ({ employee }: Props) => {
             lastName: employee.lastName,
             email: employee.email,
             birthday: new Date(employee.birthday),
-            contacts: [
-                {
-                    firstName: 'First index',
-                    email: 'email1'
-                },
-                {
-                    firstName: 'Second index',
-                    email: 'email 2'
-                },
-                {
-                    firstName: 'Second index',
-                    email: 'email 2'
-                }
-            ]
+            contacts: employee.contacts || [{ name: '', email: '' }]
         },
         validationSchema: schema,
-        onSubmit: (values) => {
-            alert(JSON.stringify(values, null, 2));
+        onSubmit: (values, { setSubmitting }) => {
+            setSubmitting(true);
+            editEmployee(employee.id, values)
+                .then(() => {
+                    toast('Employee edited');
+                })
+                .catch(() => {
+                    toast('Error when editing employee', 'danger');
+                })
+                .finally(() => {
+                    setSubmitting(false);
+                });
         }
     });
 
@@ -112,6 +111,7 @@ const EditEmployeeForm = ({ employee }: Props) => {
                             <Button
                                 type="submit"
                                 disabled={!formik.isValid || !formik.dirty}
+                                loading={formik.isSubmitting}
                             >
                                 Save
                             </Button>
