@@ -8,10 +8,12 @@ import {
     ModalBody,
     ModalFooter,
     Stack,
-    TextField
+    TextField,
+    toast
 } from '@7shifts/sous-chef';
 import { useFormik } from 'formik';
 import schema, { FormValues } from './schema';
+import { addEmployees } from '../../api';
 
 type Props = {
     onClose: () => void;
@@ -26,8 +28,19 @@ const AddEmployeeModal = ({ onClose }: Props) => {
             birthday: new Date()
         },
         validationSchema: schema,
-        onSubmit: (formValues: FormValues) => {
-            console.log(formValues);
+        onSubmit: (formValues: FormValues, { setSubmitting }) => {
+            setSubmitting(true);
+            addEmployees(formValues)
+                .then(() => {
+                    toast('Employee created');
+                    onClose();
+                })
+                .catch(() => {
+                    toast('Error when creating employee', 'danger');
+                })
+                .finally(() => {
+                    setSubmitting(false);
+                });
         }
     });
     return (
@@ -59,6 +72,7 @@ const AddEmployeeModal = ({ onClose }: Props) => {
                             <Button
                                 type="submit"
                                 disabled={!formik.isValid || !formik.dirty}
+                                loading={formik.isSubmitting}
                             >
                                 Add employee
                             </Button>
