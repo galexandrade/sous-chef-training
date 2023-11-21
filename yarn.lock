@@ -2,15 +2,16 @@
 # yarn lockfile v1
 
 
-"@7shifts/sous-chef@3.12.0":
-  version "3.12.0"
-  resolved "https://registry.yarnpkg.com/@7shifts/sous-chef/-/sous-chef-3.12.0.tgz#5ca5fa7c36b31ae738d1d3cfbe2e3d02a3d64fce"
-  integrity sha512-fTs0o0PZQnOiHL/lFOc8VUvTNAeAKr0756nzRuD0tWcaw81a2I4Ovo4tVmuRrkthxwxYBMyxloejxdICEHzJ2w==
+"@7shifts/sous-chef@3.28.1":
+  version "3.28.1"
+  resolved "https://registry.yarnpkg.com/@7shifts/sous-chef/-/sous-chef-3.28.1.tgz#715680535b8ca536f9bef2946ea7650c55981c4a"
+  integrity sha512-pNOA/JGGQmwT8SiOa2iGinYIh4HSluvxYFVFhwE7qsfM+4gaQUFRqidyecMRQo53ohnuAwblLnL14hKEZkQy4A==
   dependencies:
     classnames "^2.3.2"
     date-fns "2.29.3"
+    libphonenumber-js "^1.10.36"
     lodash-es "^4.17.15"
-    react-day-picker "^7.2.3"
+    react-day-picker "^8.8.0"
     react-modal "^3.16.1"
     react-router-dom "5.1.2 - 6.7.0"
     react-select "^3.1.0"
@@ -6231,6 +6232,11 @@ levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
+libphonenumber-js@^1.10.36:
+  version "1.10.49"
+  resolved "https://registry.yarnpkg.com/libphonenumber-js/-/libphonenumber-js-1.10.49.tgz#c871661c62452348d228c96425f75ddf7e10f05a"
+  integrity sha512-gvLtyC3tIuqfPzjvYLH9BmVdqzGDiSi4VjtWe2fAgSdBf0yt8yPmbNnRIHNbR5IdtVkm0ayGuzwQKTWmU0hdjQ==
+
 lilconfig@^2.0.3, lilconfig@^2.0.5, lilconfig@^2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/lilconfig/-/lilconfig-2.0.6.tgz#32a384558bd58af3d4c6e077dd1ad1d397bc69d4"
@@ -7793,12 +7799,10 @@ react-app-polyfill@^3.0.0:
     regenerator-runtime "^0.13.9"
     whatwg-fetch "^3.6.2"
 
-react-day-picker@^7.2.3:
-  version "7.4.10"
-  resolved "https://registry.yarnpkg.com/react-day-picker/-/react-day-picker-7.4.10.tgz#d3928fa65c04379ad28c76de22aa85374a8361e1"
-  integrity sha512-/QkK75qLKdyLmv0kcVzhL7HoJPazoZXS8a6HixbVoK6vWey1Od1WRLcxfyEiUsRfccAlIlf6oKHShqY2SM82rA==
-  dependencies:
-    prop-types "^15.6.2"
+react-day-picker@^8.8.0:
+  version "8.9.1"
+  resolved "https://registry.yarnpkg.com/react-day-picker/-/react-day-picker-8.9.1.tgz#62dcc2bc1282ac72d057266112d9c8558334e757"
+  integrity sha512-W0SPApKIsYq+XCtfGeMYDoU0KbsG3wfkYtlw8l+vZp6KoBXGOlhzBUp4tNx1XiwiOZwhfdGOlj7NGSCKGSlg5Q==
 
 react-dev-utils@^12.0.1:
   version "12.0.1"
