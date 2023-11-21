@@ -19,6 +19,7 @@ const EmployeesTable = (props: Props) => {
             items={data}
             isLoading={isLoading}
             itemComponent={EmployeeRow}
+            showActionMenu
         />
     );
 };
