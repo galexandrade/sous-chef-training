@@ -12,12 +12,8 @@ const EmployeesTable = (props: Props) => {
         <DataTable
             columns={[
                 {
-                    name: 'firstName',
-                    label: 'FirstName'
-                },
-                {
-                    name: 'email',
-                    label: 'Email'
+                    name: 'employee',
+                    label: 'Employee'
                 }
             ]}
             items={data}

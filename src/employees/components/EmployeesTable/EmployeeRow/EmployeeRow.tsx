@@ -4,6 +4,7 @@ import {
     DataTableCustomComponent,
     DataTableRow,
     Inline,
+    Stack,
     Text
 } from '@7shifts/sous-chef';
 import { Employee } from '../../../types';
@@ -23,12 +24,16 @@ const EmployeeRow = ({ item }: DataTableCustomComponent<Employee>) => {
                             )
                         }
                     />
-                    <Text>
-                        {item.firstName} {item.lastName}
-                    </Text>
+                    <Stack space={0}>
+                        <Text>
+                            {item.firstName} {item.lastName}
+                        </Text>
+                        <Text as="caption" color="grey-300">
+                            {item.email}
+                        </Text>
+                    </Stack>
                 </Inline>
             </DataTableCell>
-            <DataTableCell columnIndex={1}>{item.email}</DataTableCell>
         </DataTableRow>
     );
 };
