@@ -11,12 +11,17 @@ import {
 } from '@7shifts/sous-chef';
 import { Employee } from '../../../types';
 import EmployeeStatusBadge from '../EmployeeStatusBadge';
+import { useNavigate } from 'react-router-dom';
 
 const EmployeeRow = ({ item }: DataTableCustomComponent<Employee>) => {
+    const navigate = useNavigate();
+
+    const handleNavigateToEdit = () => navigate(`/employees/${item.id}`);
+
     const actions: DataTableAction[] = [
         {
             action: 'edit',
-            onAction: () => console.log('Will edit'),
+            onAction: handleNavigateToEdit,
             label: <IconPencil />,
             showInKebab: false
         },
@@ -27,7 +32,7 @@ const EmployeeRow = ({ item }: DataTableCustomComponent<Employee>) => {
         }
     ];
     return (
-        <DataTableRow actions={actions}>
+        <DataTableRow actions={actions} onClick={handleNavigateToEdit}>
             <DataTableCell columnIndex={0}>
                 <Inline alignItems="center" space={12}>
                     <Avatar
