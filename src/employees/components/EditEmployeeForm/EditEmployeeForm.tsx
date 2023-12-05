@@ -7,16 +7,32 @@ import {
     TextField
 } from '@7shifts/sous-chef';
 import { useNavigate } from 'react-router-dom';
+import { Employee } from '../../types';
 
-const EditEmployeeForm = () => {
+type Props = {
+    employee: Employee;
+};
+const EditEmployeeForm = ({ employee }: Props) => {
     const navigate = useNavigate();
     return (
         <Form>
             <FormRow>
-                <TextField name="firstName" label="First name" />
-                <TextField name="lastName" label="Last name" />
+                <TextField
+                    name="firstName"
+                    label="First name"
+                    defaultValue={employee.firstName}
+                />
+                <TextField
+                    name="lastName"
+                    label="Last name"
+                    defaultValue={employee.lastName}
+                />
             </FormRow>
-            <TextField name="email" label="Email" />
+            <TextField
+                name="email"
+                label="Email"
+                defaultValue={employee.email}
+            />
             <FormRow columns={2}>
                 <DateField name="birthday" label="Birthday" />
             </FormRow>
