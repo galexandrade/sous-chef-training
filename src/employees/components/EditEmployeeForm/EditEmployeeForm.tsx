@@ -19,7 +19,8 @@ const EditEmployeeForm = ({ employee }: Props) => {
         initialValues: {
             firstName: employee.firstName,
             lastName: employee.lastName,
-            email: employee.email
+            email: employee.email,
+            birthday: new Date(employee.birthday)
         },
         onSubmit: (values) => console.log('submit', values)
     });
@@ -31,7 +32,11 @@ const EditEmployeeForm = ({ employee }: Props) => {
             </FormRow>
             <TextField name="email" label="Email" />
             <FormRow columns={2}>
-                <DateField name="birthday" label="Birthday" />
+                <DateField
+                    name="birthday"
+                    label="Birthday"
+                    disabledDays={(date) => date > new Date()}
+                />
             </FormRow>
             <FormFooter
                 actions={{
