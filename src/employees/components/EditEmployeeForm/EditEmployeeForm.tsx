@@ -8,31 +8,28 @@ import {
 } from '@7shifts/sous-chef';
 import { useNavigate } from 'react-router-dom';
 import { Employee } from '../../types';
+import { useFormik } from 'formik';
 
 type Props = {
     employee: Employee;
 };
 const EditEmployeeForm = ({ employee }: Props) => {
     const navigate = useNavigate();
+    const formik = useFormik({
+        initialValues: {
+            firstName: employee.firstName,
+            lastName: employee.lastName,
+            email: employee.email
+        },
+        onSubmit: (values) => console.log('submit', values)
+    });
     return (
-        <Form>
+        <Form formik={formik}>
             <FormRow>
-                <TextField
-                    name="firstName"
-                    label="First name"
-                    defaultValue={employee.firstName}
-                />
-                <TextField
-                    name="lastName"
-                    label="Last name"
-                    defaultValue={employee.lastName}
-                />
+                <TextField name="firstName" label="First name" />
+                <TextField name="lastName" label="Last name" />
             </FormRow>
-            <TextField
-                name="email"
-                label="Email"
-                defaultValue={employee.email}
-            />
+            <TextField name="email" label="Email" />
             <FormRow columns={2}>
                 <DateField name="birthday" label="Birthday" />
             </FormRow>
