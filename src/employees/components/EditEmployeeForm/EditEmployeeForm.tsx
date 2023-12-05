@@ -8,12 +8,14 @@ import {
     IconTrash,
     Inline,
     Stack,
-    TextField
+    TextField,
+    toast
 } from '@7shifts/sous-chef';
 import { useNavigate } from 'react-router-dom';
 import { Employee } from '../../types';
 import { FieldArray, FormikProvider, useFormik } from 'formik';
-import schema from './schema';
+import schema, { FormValues } from './schema';
+import { editEmployee } from '../../api';
 
 type Props = {
     employee: Employee;
@@ -26,12 +28,21 @@ const EditEmployeeForm = ({ employee }: Props) => {
             lastName: employee.lastName,
             email: employee.email,
             birthday: new Date(employee.birthday),
-            contacts: [
-                { firstName: employee.firstName, lastName: employee.lastName }
-            ]
+            contacts: employee.contacts || [{ name: '', email: '' }]
         },
         validationSchema: schema,
-        onSubmit: (values) => console.log('submit', values)
+        onSubmit: (values: FormValues, { setSubmitting, resetForm }) => {
+            setSubmitting(true);
+            editEmployee(employee.id, values)
+                .then(() => {
+                    resetForm({ values });
+                    toast('Employee edited');
+                })
+                .catch(() => {
+                    toast('Error on editing the employee', 'danger');
+                })
+                .finally(() => setSubmitting(false));
+        }
     });
     return (
         <FormikProvider value={formik}>
@@ -94,6 +105,7 @@ const EditEmployeeForm = ({ employee }: Props) => {
                             <Button
                                 type="submit"
                                 disabled={!formik.isValid || !formik.dirty}
+                                loading={formik.isSubmitting}
                             >
                                 Save
                             </Button>
