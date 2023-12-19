@@ -8,17 +8,47 @@ import {
     ModalBody,
     ModalFooter,
     Stack,
-    TextField
+    TextField,
+    toast
 } from '@7shifts/sous-chef';
+import { useFormik } from 'formik';
+import schema, { FormValues } from './schema';
+import { addEmployees } from '../../api';
 
 type Props = {
     onClose: () => void;
 };
 
 const AddEmployeeModal = ({ onClose }: Props) => {
+    const formik = useFormik({
+        initialValues: {
+            firstName: '',
+            lastName: '',
+            email: '',
+            birthday: new Date()
+        },
+        validationSchema: schema,
+        onSubmit: (values: FormValues, { setSubmitting, resetForm }) => {
+            setSubmitting(true);
+            addEmployees(values)
+                .then(() => {
+                    resetForm({ values });
+                    toast('Employee added');
+                    onClose();
+                })
+                .catch(() => {
+                    toast('Error on adding the employee', 'danger');
+                })
+                .finally(() => setSubmitting(false));
+        }
+    });
     return (
-        <Modal header="Add employee" onClose={onClose} loading>
-            <Form>
+        <Modal
+            header="Add employee"
+            onClose={onClose}
+            loading={formik.isSubmitting}
+        >
+            <Form stackContent={false} formik={formik}>
                 <ModalBody>
                     <Stack>
                         <InlineBanner>
@@ -41,7 +71,15 @@ const AddEmployeeModal = ({ onClose }: Props) => {
                 </ModalBody>
                 <ModalFooter
                     actions={{
-                        primary: <Button type="submit">Add employee</Button>,
+                        primary: (
+                            <Button
+                                type="submit"
+                                disabled={!formik.isValid || !formik.dirty}
+                                loading={formik.isSubmitting}
+                            >
+                                Add employee
+                            </Button>
+                        ),
                         secondary: <Button onClick={onClose}>Cancel</Button>
                     }}
                 />
