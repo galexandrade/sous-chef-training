@@ -28,11 +28,10 @@ const AddEmployeeModal = ({ onClose }: Props) => {
             birthday: new Date()
         },
         validationSchema: schema,
-        onSubmit: (values: FormValues, { setSubmitting, resetForm }) => {
+        onSubmit: (values: FormValues, { setSubmitting }) => {
             setSubmitting(true);
             addEmployees(values)
                 .then(() => {
-                    resetForm({ values });
                     toast('Employee added');
                     onClose();
                 })
