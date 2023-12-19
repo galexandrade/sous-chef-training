@@ -5,10 +5,13 @@ import {
     IconWrench,
     Inline
 } from '@7shifts/sous-chef';
+import { useState } from 'react';
+import AddEmployeeModal from '../AddEmployeeModal';
 
 type Props = {};
 
 const EmployeesPageActions = (props: Props) => {
+    const [isAddEmployeeModalOpen, setIsAddEmployeeModalOpen] = useState(false);
     return (
         <>
             <Inline space={12}>
@@ -17,11 +20,19 @@ const EmployeesPageActions = (props: Props) => {
                     Tools
                     <IconChevronDown size="medium" />
                 </Button>
-                <Button theme="primary">
+                <Button
+                    theme="primary"
+                    onClick={() => setIsAddEmployeeModalOpen(true)}
+                >
                     <IconUserPlus size="medium" />
                     Add employee
                 </Button>
             </Inline>
+            {isAddEmployeeModalOpen && (
+                <AddEmployeeModal
+                    onClose={() => setIsAddEmployeeModalOpen(false)}
+                />
+            )}
         </>
     );
 };
